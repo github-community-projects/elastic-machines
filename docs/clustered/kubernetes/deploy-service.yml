@@ -1,0 +1,119 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elastic-machines-deployment
+  labels:
+    app.kubernetes.io/name: elastic-machines
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: elastic-machines
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: elastic-machines
+        app.kubernetes.io/component: service
+    spec:
+      containers:
+        - name: elastic-machines
+          image: ghcr.io/elastic-machines/kubernetes-pod
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          env:
+            - name: APP_ID
+              value: "<App ID>"
+            - name: PRIVATE_KEY
+              value: <Private Key contents>
+            - name: WEBHOOK_SECRET
+              value: <Webhook Secret>
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+      imagePullSecrets:
+        - name: ghcr
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: elastic-machines-service
+  labels:
+    app.kubernetes.io/name: elastic-machines
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: elastic-machines
+    app.kubernetes.io/component: service
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: elastic-machines-ingress
+  annotations:
+    cert-manager.io/issuer: letsencrypt
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - <Your domain>
+      secretName: elastic-machines-tls
+  rules:
+    - host: <Your domain>
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: elastic-machines-service
+                port:
+                  name: http
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: <Your email>
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    # Enable the HTTP-01 challenge provider
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+            podTemplate:
+              spec:
+                nodeSelector:
+                  "kubernetes.io/os": linux
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: <Your email>
+    privateKeySecretRef:
+      name: letsencrypt
+    # Enable the HTTP-01 challenge provider
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+            podTemplate:
+              spec:
+                nodeSelector:
+                  "kubernetes.io/os": linux
