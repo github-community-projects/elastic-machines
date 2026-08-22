@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# .NET
+[Bb]in/
+[Oo]bj/
+
+# Go
+**/__debug_bin*
+
+# Terraform
+.terraform/
+*.tfstate*
+*.tfvars*
+
+# Certificates
+*.pem
+
+# Configuration
+.env
+elastic-machines.yml
+appsettings.*.json

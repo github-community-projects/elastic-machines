@@ -1,0 +1,15 @@
+<Solution>
+  <Project Path="ElasticMachines.AwsInstance.Tests/ElasticMachines.AwsInstance.Tests.csproj" />
+  <Project Path="ElasticMachines.AwsInstance/ElasticMachines.AwsInstance.csproj" />
+  <Project Path="ElasticMachines.AzureVirtualMachine.Tests/ElasticMachines.AzureVirtualMachine.Tests.csproj" />
+  <Project Path="ElasticMachines.AzureVirtualMachine/ElasticMachines.AzureVirtualMachine.csproj" />
+  <Project Path="ElasticMachines.Engine.Tests/ElasticMachines.Engine.Tests.csproj" />
+  <Project Path="ElasticMachines.Engine/ElasticMachines.Engine.csproj" />
+  <Project Path="ElasticMachines.KubernetesPod.Tests/ElasticMachines.KubernetesPod.Tests.csproj" />
+  <Project Path="ElasticMachines.KubernetesPod/ElasticMachines.KubernetesPod.csproj" />
+  <Project Path="ElasticMachines.Monolith/ElasticMachines.Monolith.csproj" />
+  <Project Path="ElasticMachines.OpenTelemetry.Exporter.CloudWatch/ElasticMachines.OpenTelemetry.Exporter.CloudWatch.csproj" />
+  <Project Path="ElasticMachines.Tests.Core/ElasticMachines.Tests.Core.csproj" />
+  <Project Path="ElasticMachines.Utilities.Tests/ElasticMachines.Utilities.Tests.csproj" />
+  <Project Path="ElasticMachines.Utilities/ElasticMachines.Utilities.csproj" />
+</Solution>

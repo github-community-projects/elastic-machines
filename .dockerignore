@@ -1,0 +1,11 @@
+# Exclude everything
+*
+
+# Include source files/folders
+!ElasticMachines.*/
+!Directory.Build.props
+
+# Exclude a few more files/folders in source
+*/bin
+*/obj
+*/appsettings.Development.json
