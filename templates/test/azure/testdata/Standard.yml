@@ -1,0 +1,19 @@
+tags:
+  environment: test
+  component: elastic-machines-service
+  catalog_service: elastic-machines
+
+name: ${ env.NAMESPACE }-em-test
+
+container:
+  login: elastic-machines-bot
+  token: ${ env.CONTAINER_REGISTRY_TOKEN }
+  image: elastic-machines/monolith
+  environment:
+    APP_ID: 1404519
+    PRIVATE_KEY: ${ env.PRIVATE_KEY }
+
+subscription_id: fea15af7-e623-44a9-8e70-3434dbcc4e90 # GitHub - NonProd - CSE - Elastic Machines
+
+resource_group:
+  region: East US 2

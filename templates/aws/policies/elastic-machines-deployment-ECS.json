@@ -1,0 +1,36 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Cluster",
+      "Effect": "Allow",
+      "Action": [
+        "ecs:DeleteCluster",
+        "ecs:DescribeClusters"
+      ],
+      "Resource": "arn:aws:ecs:*:*:cluster/*"
+    },
+    {
+      "Sid": "TaskDefinition",
+      "Effect": "Allow",
+      "Action": [
+        "ecs:DeregisterTaskDefinition",
+        "ecs:CreateCluster",
+        "ecs:RegisterTaskDefinition",
+        "ecs:DescribeTaskDefinition"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "Service",
+      "Effect": "Allow",
+      "Action": [
+        "ecs:UpdateService",
+        "ecs:CreateService",
+        "ecs:DeleteService",
+        "ecs:DescribeServices"
+      ],
+      "Resource": "arn:aws:ecs:*:*:service/*/*"
+    }
+  ]
+}

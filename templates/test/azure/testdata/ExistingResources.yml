@@ -1,0 +1,34 @@
+tags:
+  environment: test
+  component: elastic-machines-service
+  catalog_service: elastic-machines
+
+name: ${ env.NAMESPACE }-em-test
+
+container:
+  login: elastic-machines-bot
+  token: ${ env.CONTAINER_REGISTRY_TOKEN }
+  image: elastic-machines/monolith
+  environment:
+    APP_ID:
+      value: 1404519
+    PRIVATE_KEY: ${ env.PRIVATE_KEY }
+    AWS_ACCESS_KEY_ID: test
+    AWS_SECRET_ACCESS_KEY: ${ env.AWS_SECRET_ACCESS_KEY }
+    AWS_REGION: test
+
+subscription_id: fea15af7-e623-44a9-8e70-3434dbcc4e90 # GitHub - NonProd - CSE - Elastic Machines
+
+resource_group:
+  name: elastic-machines-dev
+
+app_service:
+  name: ${ env.NAMESPACE }-test-app-service
+  plan_sku: B1
+  identity:
+    name: mi-elastic-machines
+    resource_group: elastic-machines-dev
+
+app_insights:
+  name: elastic-machines-ci-app-insights
+  resource_group: elastic-machines-dev

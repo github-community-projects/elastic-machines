@@ -1,0 +1,20 @@
+tags:
+  environment: test
+  component: elastic-machines-service
+  catalog_service: elastic-machines
+
+name: ${ env.NAMESPACE }-em-test
+
+container:
+  login: elastic-machines-bot
+  token: ${ env.CONTAINER_REGISTRY_TOKEN }
+  image: elastic-machines/monolith
+  environment:
+    APP_ID: 1404519
+    PRIVATE_KEY: ${ env.PRIVATE_KEY }
+
+region: us-west-2
+
+domain:
+  name: ${ env.NAMESPACE }-test.elastic-machines.com
+  certificate_arn: arn:aws:acm:us-west-2:969517703159:certificate/8046ee6e-4a0b-4f0e-a8e5-8f99e6c3f4ce

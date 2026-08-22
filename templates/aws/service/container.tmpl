@@ -1,0 +1,28 @@
+${jsonencode([
+  {
+    logConfiguration = {
+      logDriver = "awslogs",
+      options = {
+        awslogs-group = "${log_group}"
+        awslogs-region = "${region}"
+        awslogs-stream-prefix = "/elastic-machines"
+      }
+    }
+    cpu = 0
+    essential = true
+    image = "${ghcr_image}"
+    name = "${name}"
+    portMappings = [
+      {
+        containerPort = 80,
+        hostPort = 80,
+        protocol = "tcp"
+      }
+    ]
+    environment = [for name, value in env : { name = "${name}", value = "${tostring(value)}" }]
+    secrets = [for name, value in secrets : { name = name, valueFrom = "${tostring(value)}" }]
+    repositoryCredentials = {
+      credentialsParameter = "${ghcr_arn}"
+    }
+  }
+])}
