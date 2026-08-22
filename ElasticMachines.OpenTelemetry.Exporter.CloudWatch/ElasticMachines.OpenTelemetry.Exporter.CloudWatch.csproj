@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.CloudWatchLogs" Version="3.7.410.23" />
+    <PackageReference Include="OpenTelemetry" Version="1.15.3" />
+  </ItemGroup>
+</Project>

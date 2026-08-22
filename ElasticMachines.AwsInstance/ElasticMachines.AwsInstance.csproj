@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ElasticMachines.Engine/ElasticMachines.Engine.csproj" />
+    <ProjectReference Include="../ElasticMachines.OpenTelemetry.Exporter.CloudWatch/ElasticMachines.OpenTelemetry.Exporter.CloudWatch.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.AutoScaling" Version="3.7.407.78" />
+    <PackageReference Include="AWSSDK.EC2" Version="3.7.437.11" />
+    <PackageReference Include="AWSSDK.SecurityToken" Version="3.7.401.84" />
+    <PackageReference Include="AWSSDK.SimpleSystemsManagement" Version="3.7.404.16" />
+    <PackageReference Include="Marius.OpenTelemetry.Exporter.XRay" Version="1.0.14" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.15.3" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.3" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.15.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Process" Version="1.15.1-beta.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1" />
+  </ItemGroup>
+</Project>
